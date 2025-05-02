@@ -11,6 +11,7 @@ export const AuthProvider = ({ children }) => {
     const loadToken = async () => {
       const token = await AsyncStorage.getItem("userToken");
       if (token) {
+        console.log("Successfully stored token in storage: ", token)
         setUserToken(token);
       }
     };
@@ -22,6 +23,7 @@ export const AuthProvider = ({ children }) => {
       const response = await authService.login(username, password);
       const token = response.data.token;
       await AsyncStorage.setItem("userToken", token);
+      console.log("Login successful got user token: ",token)
       setUserToken(token);
     } catch (error) {
       throw error;

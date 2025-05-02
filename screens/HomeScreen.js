@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useContext } from "react";
-import { View, Text, FlatList, ActivityIndicator, Alert, TouchableOpacity, StyleSheet } from "react-native";
+import { View, Text, FlatList, ActivityIndicator, Alert, TouchableOpacity, StyleSheet,Button } from "react-native";
 import { workoutService } from "../api/apiService";
 import { AuthContext } from "../context/authcontext";
 
@@ -46,6 +46,8 @@ export default function HomeScreen({ navigation }) {
       <TouchableOpacity style={styles.logoutButton} onPress={logout}>
         <Text style={styles.logoutText}>Logout</Text>
       </TouchableOpacity>
+      <Button title="View History" onPress={() => navigation.navigate("WorkoutHistory")} />
+
     </View>
   );
 }

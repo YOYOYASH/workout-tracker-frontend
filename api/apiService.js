@@ -12,6 +12,7 @@ api.interceptors.request.use(
     async (requestConfig) => {
       const token = await AsyncStorage.getItem("userToken"); // Retrieve token
       if (token) {
+        console.log("Sending token in request: ", token)
         requestConfig.headers.Authorization = `Bearer ${token}`;
       }
       return requestConfig;
@@ -36,20 +37,20 @@ export const exerciseService = {
 
 // Workout Services
 export const workoutService = {
-  getAllWorkoutPlans: () => api.get(config.ENDPOINTS.WORKOUTS),
+  getAllWorkoutPlans: () => api.get(`${config.ENDPOINTS.WORKOUTS}/`),
   getWorkoutPlanById: (id) => api.get(`${config.ENDPOINTS.WORKOUTS}/${id}`),
   getExercisesForDay: (dayId) => api.get(`${config.ENDPOINTS.WORKOUTS}/days/${dayId}/exercises`),
   createWorkoutPlan: (data) => api.post(config.ENDPOINTS.WORKOUTS, data),
   updateWorkoutPlan: (id, data) => api.put(`${config.ENDPOINTS.WORKOUTS}/${id}`, data),
   deleteWorkoutPlan: (id) => api.delete(`${config.ENDPOINTS.WORKOUTS}/${id}`),
-  getExercisesForDay: (dayId) => api.get(`${config.ENDPOINTS.WORKOUTS}/days/${dayId}/exercises`),
 };
 
 // Workout Log Services
 export const workoutLogService = {
-  getAllWorkoutLogs: () => api.get(config.ENDPOINTS.WORKOUT_LOGS),
-  createWorkoutLog: (data) => api.post(config.ENDPOINTS.WORKOUT_LOGS, data),
+  getAllWorkoutLogs: () => api.get(`${config.ENDPOINTS.WORKOUT_LOGS}/`),
+  createWorkoutLog: (data) => api.post(`${config.ENDPOINTS.WORKOUT_LOGS}/`, data),
   addExerciseToLog: (logId, data) => api.post(`${config.ENDPOINTS.WORKOUT_LOGS}/${logId}/exercises`, data),
+  getExercisesForLog: (logId) => api.get(`${config.ENDPOINTS.WORKOUT_LOGS}/${logId}/exercises`)
 };
 
 // Progress Services

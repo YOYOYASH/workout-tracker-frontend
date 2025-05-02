@@ -1,4 +1,4 @@
-const API_BASE_URL = "http://192.168.0.8:8080"; // Replace with actual IP
+const API_BASE_URL = "https://fastapi-workout-app-710172862552.us-central1.run.app"; // Replace with actual IP
 
 const ENDPOINTS = {
   LOGIN: "/login",

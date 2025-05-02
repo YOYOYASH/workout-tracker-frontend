@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
-import { View, Text, FlatList, ActivityIndicator, Alert, StyleSheet } from "react-native";
+import { View, Text, FlatList, ActivityIndicator, Alert, StyleSheet,Button } from "react-native";
 import { workoutService } from "../api/apiService";
 
-export default function ExercisesListScreen({ route }) {
-  const { dayId } = route.params; // Get selected day ID
+export default function ExercisesListScreen({ route,navigation }) {
+  const { dayId,workoutId } = route.params; // Get selected day ID
   const [exercises, setExercises] = useState([]);
   const [loading, setLoading] = useState(true);
 
@@ -43,6 +43,14 @@ export default function ExercisesListScreen({ route }) {
           )}
         />
       )}
+      <Button
+  title="Log This Workout"
+  onPress={() => navigation.navigate("LogWorkout", {
+    dayId,
+    workoutPlanId: workoutId // Make sure to pass it down to this screen
+  })}
+/>
+
     </View>
   );
 }

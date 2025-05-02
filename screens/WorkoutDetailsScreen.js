@@ -60,7 +60,7 @@ export default function WorkoutDetailsScreen({ route, navigation }) {
                   <TouchableOpacity
                     key={day.id}
                     style={styles.dayButton}
-                    onPress={() => navigation.navigate("ExercisesList", { dayId: day.id })}
+                    onPress={() => navigation.navigate("ExercisesList", { dayId: day.id,workoutId:workoutId })}
                   >
                     <Text style={styles.dayText}>{day.day_of_week}</Text>
                   </TouchableOpacity>
